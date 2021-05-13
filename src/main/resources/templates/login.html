@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン画面</title>
+</head>
+    <body>
+        <h2>ログイン画面</h2>
+
+        <form action="/login/userlist" th:action="@{/login/userlist}" method="post" th:object="${authInfo}">
+            <div>
+                <span>email</span>
+                <input type ="email" th:field="*{email}">
+            </div>
+            <div>
+                <span>pasword</span>
+                <input type="password" th:field="*{pass}">
+            </div>
+            <input type="submit" value="login">
+        </form>
+
+    </body>
+</html>
