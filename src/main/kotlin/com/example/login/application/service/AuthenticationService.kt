@@ -21,6 +21,7 @@ class AuthenticationService(
     }
 
 
+    //疑似的に外部からPOST通信をしているかのようにしている
     fun authentication(authInfo: AuthenticationInformation){
         val restTemplate = RestTemplate()
         val headers = HttpHeaders()

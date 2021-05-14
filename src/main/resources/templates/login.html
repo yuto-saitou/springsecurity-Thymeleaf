@@ -7,7 +7,7 @@
     <body>
         <h2>ログイン画面</h2>
 
-        <form action="/login/userlist" th:action="@{/login/userlist}" method="post" th:object="${authInfo}">
+        <form action="/login" th:action="@{/login}"  th:object="${authInfo}" method="post">
             <div>
                 <span>email</span>
                 <input type ="email" th:field="*{email}">
