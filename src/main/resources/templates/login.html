@@ -6,8 +6,9 @@
 </head>
     <body>
         <h2>ログイン画面</h2>
+        <p>user2@test.com = saitoyuto1123</p>
 
-        <form action="/login" th:action="@{/login}"  th:object="${authInfo}" method="post">
+        <form action="/login" th:action="@{/login/auth}"  th:object="${authInfo}" method="post">
             <div>
                 <span>email</span>
                 <input type ="email" th:field="*{email}">

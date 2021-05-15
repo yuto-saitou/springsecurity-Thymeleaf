@@ -20,11 +20,10 @@ class SecurityConfig(private val authenticationService: AuthenticationService) :
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
             .mvcMatchers("/login").permitAll()
-            .mvcMatchers("/login/userlist").permitAll()
+//            .mvcMatchers("/login/userlist").permitAll()
             .mvcMatchers("admin/**").hasAuthority(RoleType.ADMIN.toString())
             .anyRequest().authenticated()
             .and()
-
             .csrf().disable()
             .formLogin()
 
@@ -32,6 +31,7 @@ class SecurityConfig(private val authenticationService: AuthenticationService) :
 
             .usernameParameter("email")
             .passwordParameter("pass")
+
             .successHandler(SpringSecurityAutheticationSuccessHandler())
             .failureHandler(SpringSecurityAuthenticationFailureHandler())
             .and()
