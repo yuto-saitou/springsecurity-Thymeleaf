@@ -37,5 +37,5 @@ class LoginController (
     fun loginAuthentication(@ModelAttribute authInfo: AuthenticationInformation) : String{
 //        authenticationService.authentication(authInfo)
         return "test"
-    }aaa
+    }
 }

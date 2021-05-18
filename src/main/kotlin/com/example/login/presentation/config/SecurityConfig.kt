@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
+
 @EnableWebSecurity
 class SecurityConfig(private val authenticationService: AuthenticationService) : WebSecurityConfigurerAdapter() {
 
@@ -23,21 +24,24 @@ class SecurityConfig(private val authenticationService: AuthenticationService) :
 //            .mvcMatchers("/login/userlist").permitAll()
             .mvcMatchers("admin/**").hasAuthority(RoleType.ADMIN.toString())
             .anyRequest().authenticated()
+
             .and()
             .csrf().disable()
             .formLogin()
-
             .loginProcessingUrl("/login/auth")
-
             .usernameParameter("email")
             .passwordParameter("pass")
-
             .successHandler(SpringSecurityAutheticationSuccessHandler())
             .failureHandler(SpringSecurityAuthenticationFailureHandler())
+
             .and()
             .exceptionHandling()
             .authenticationEntryPoint(SpringSecurityAuthenticationEntryPoint())
             .accessDeniedHandler(SpringSecurityAccessDeniedHandler())
+
+            .and().logout()
+            .logoutUrl("/user/logout")
+            .logoutSuccessUrl("/login")
 
     }
 
