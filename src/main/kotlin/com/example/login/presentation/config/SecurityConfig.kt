@@ -20,7 +20,7 @@ class SecurityConfig(private val authenticationService: AuthenticationService) :
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-            .mvcMatchers("/login").permitAll()
+            .mvcMatchers("/login","error/**").permitAll()
 //            .mvcMatchers("/login/userlist").permitAll()
             .mvcMatchers("admin/**").hasAuthority(RoleType.ADMIN.toString())
             .anyRequest().authenticated()
@@ -43,10 +43,15 @@ class SecurityConfig(private val authenticationService: AuthenticationService) :
             .logoutUrl("/user/logout")
             .logoutSuccessUrl("/login")
 
+            .and()
+            .sessionManagement()
+            .invalidSessionUrl("/error")
+
     }
 
     override fun configure (auth: AuthenticationManagerBuilder){
-        auth.userDetailsService(SpringSecurityUserDetailsService(authenticationService)).passwordEncoder(BCryptPasswordEncoder())
+        auth.userDetailsService(SpringSecurityUserDetailsService(authenticationService))//認証処理を行うクラスを指定
+            .passwordEncoder(BCryptPasswordEncoder())//パスワードの暗号化アルゴリズムを指定(今回はBCrypt)
 
     }
 

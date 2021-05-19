@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder
 
 @Service
 class AuthenticationService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository//UserRepositoryをインジェクション
 ) {
     fun findUser(email: String): User? {
         return userRepository.find(email)
