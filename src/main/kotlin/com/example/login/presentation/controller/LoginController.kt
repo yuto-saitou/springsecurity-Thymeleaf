@@ -18,7 +18,7 @@ class LoginController (
     private val userService: UserService
     ){
     @GetMapping("")
-    fun login(model: Model): String{
+    fun login(model: Model): String{//↓ログインページの入力値をauthInfoに渡す
         model.addAttribute("authInfo",AuthenticationInformation("",""))
         return "login"
     }

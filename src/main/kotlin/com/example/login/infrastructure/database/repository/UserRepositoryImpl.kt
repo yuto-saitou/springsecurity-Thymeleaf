@@ -17,19 +17,20 @@ import org.mybatis.dynamic.sql.render.RenderingStrategy
 class UserRepositoryImpl(
     private val mapper: UserMapper
     ) : UserRepository {//入力されたemailとデータベースのemailが同じものを探してrecordに
-    override fun find(email: String): User?{
-        val record = mapper.selectOne{
-            where(UserDynamicSqlSupport.User.email, isEqualTo(email))
-        }
-        return record?.let { toModel(it)}
-    }
 
-    override fun findAll(): List<User>? {//全権検索の結果を返す
-        val selectStatement = select(UserDynamicSqlSupport.User.allColumns())
-                                .from(UserDynamicSqlSupport.User).build().render(RenderingStrategy.MYBATIS3)
-        val userrecordlist = mapper.selectMany(selectStatement)
-        return userrecordlist?.map { toModel(it) }
-    }
+        override fun find(email: String): User?{
+            val record = mapper.selectOne{
+                where(UserDynamicSqlSupport.User.email, isEqualTo(email))
+            }
+            return record?.let { toModel(it)}
+        }
+
+        override fun findAll(): List<User>? {//
+            val selectStatement = select(UserDynamicSqlSupport.User.allColumns())
+                                    .from(UserDynamicSqlSupport.User).build().render(RenderingStrategy.MYBATIS3)
+            val userrecordlist = mapper.selectMany(selectStatement)
+            return userrecordlist?.map { toModel(it) }
+        }
 
     private fun toModel(record: UserRecord): User{
         return User(
