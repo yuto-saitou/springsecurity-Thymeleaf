@@ -26,12 +26,15 @@ class UserRepositoryImpl(
         }
 
         override fun findAll(): List<User>? {//
+            //selectStatementがデータベースのセレクト文(selectとfromとwhereも指定できる)
             val selectStatement = select(UserDynamicSqlSupport.User.allColumns())
                                     .from(UserDynamicSqlSupport.User).build().render(RenderingStrategy.MYBATIS3)
+            //上記で指定した部分をselectMany関数(全件検索)の引数に渡してuserrecordlistに代入
             val userrecordlist = mapper.selectMany(selectStatement)
+            //
             return userrecordlist?.map { toModel(it) }
         }
-
+    //selectManyの戻り値はUserlist型なのでUser型に戻す必要がある。以下のtoModelで実装
     private fun toModel(record: UserRecord): User{
         return User(
             record.id!!,
