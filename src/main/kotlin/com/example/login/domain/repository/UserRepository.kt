@@ -6,4 +6,5 @@ interface UserRepository {
     fun findAll():List<User>?//UserServiceで使う全件検索の処理(実装はUserRepositoryImplに記載
     fun find(email: String): User?//
 
+    fun register(user: User)//ユーザー登録
 }

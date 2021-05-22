@@ -5,6 +5,7 @@ import com.example.login.domain.repository.UserRepository
 import com.example.login.infrastructure.database.mapper.UserDynamicSqlSupport
 import com.example.login.infrastructure.database.mapper.UserMapper
 import com.example.login.infrastructure.database.mapper.selectOne
+import com.example.login.infrastructure.database.mapper.insert
 import com.example.login.infrastructure.database.record.UserRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.select
@@ -20,7 +21,7 @@ class UserRepositoryImpl(
 
         override fun find(email: String): User?{
             val record = mapper.selectOne{
-                where(UserDynamicSqlSupport.User.email, isEqualTo(email))
+                    where(UserDynamicSqlSupport.User.email, isEqualTo(email))
             }
             return record?.let { toModel(it)}
         }
@@ -34,6 +35,18 @@ class UserRepositoryImpl(
             //
             return userrecordlist?.map { toModel(it) }
         }
+
+
+        override fun register(user: User){
+            val userstatus = mapper.insert(toUserstatus(user))
+
+            return userstatus?.let { toModel()}
+        }
+
+    private fun toUserstatus(model:User):UserRecord{
+        return UserRecord(model.id,model.email,model.password,model.name,model.roleType)
+    }
+
     //selectManyの戻り値はUserlist型なのでUser型に戻す必要がある。以下のtoModelで実装
     private fun toModel(record: UserRecord): User{
         return User(
