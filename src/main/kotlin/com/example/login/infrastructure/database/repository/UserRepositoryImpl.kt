@@ -7,6 +7,8 @@ import com.example.login.infrastructure.database.mapper.UserMapper
 import com.example.login.infrastructure.database.mapper.selectOne
 import com.example.login.infrastructure.database.mapper.insert
 import com.example.login.infrastructure.database.record.UserRecord
+import com.example.login.presentation.form.UserStatus
+import org.mybatis.dynamic.sql.SqlBuilder
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.select
 import org.springframework.stereotype.Repository
@@ -26,26 +28,35 @@ class UserRepositoryImpl(
             return record?.let { toModel(it)}
         }
 
+
         override fun findAll(): List<User>? {//
             //selectStatementがデータベースのセレクト文(selectとfromとwhereも指定できる)
             val selectStatement = select(UserDynamicSqlSupport.User.allColumns())
                                     .from(UserDynamicSqlSupport.User).build().render(RenderingStrategy.MYBATIS3)
             //上記で指定した部分をselectMany関数(全件検索)の引数に渡してuserrecordlistに代入
             val userrecordlist = mapper.selectMany(selectStatement)
-            //
             return userrecordlist?.map { toModel(it) }
         }
 
 
         override fun register(user: User){
-            val userstatus = mapper.insert(toUserstatus(user))
-
-            return userstatus?.let { toModel()}
+            val insertStatement = SqlBuilder.insert(toUserstatus(user)).into(UserDynamicSqlSupport.User)
+                .map(UserDynamicSqlSupport.User.id).toProperty("id")
+                .map(UserDynamicSqlSupport.User.email).toProperty("email")
+                .map(UserDynamicSqlSupport.User.password).toProperty("password")
+                .map(UserDynamicSqlSupport.User.name).toProperty("name")
+                .map(UserDynamicSqlSupport.User.roleType).toProperty("roleType")
+                .build().render(RenderingStrategy.MYBATIS3)
         }
 
-    private fun toUserstatus(model:User):UserRecord{
-        return UserRecord(model.id,model.email,model.password,model.name,model.roleType)
-    }
+        private fun toUserstatus(model:User):UserRecord{
+            return UserRecord(
+                model.id,
+                model.email,
+                model.password,
+                model.name,
+                model.roleType)
+        }
 
     //selectManyの戻り値はUserlist型なのでUser型に戻す必要がある。以下のtoModelで実装
     private fun toModel(record: UserRecord): User{

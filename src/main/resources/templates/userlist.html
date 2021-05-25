@@ -35,5 +35,19 @@
             </button>
         </form>
 
+        <form th:action="@{/login/insert}"  th:object="${authInfo}" method="post">
+            <div>
+                <span>email</span>
+                <input type ="email" th:field="*{email}">
+            </div>
+            <div>
+                <span>pasword</span>
+                <input type="password" th:field="*{pass}">
+            </div>
+            <input type="submit" value="login">
+        </form>
+
+
+
     </body>
 </html>
