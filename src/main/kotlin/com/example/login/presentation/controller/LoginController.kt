@@ -35,9 +35,9 @@ class LoginController (
         return "userlist"
     }
 
-    @PostMapping("/insert")
-    fun register(model: Model):String{
-        model.addAttribute("userInfo",UserStatus("","","","",""))
+    @GetMapping("/insert")
+    fun register(model: Model): String{
+        model.addAttribute("userInfo",UserStatus("","",""))
 
         return "insert"
     }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/login/userlist}"  th:object="${userInfo}" method="get">
+<!--  <div>-->
+<!--    <span>id</span>-->
+<!--    <input type ="email" th:field="*{id}">-->
+<!--  </div>-->
+  <div>
+    <span>email</span>
+    <input type="email" th:field="*{email}">
+  </div>
+  <div>
+    <span>password</span>
+    <input type ="password" th:field="*{password}">
+  </div>
+  <div>
+    <span>name</span>
+    <input type="name" th:field="*{name}">
+  </div>
+<!--  <div>-->
+<!--    <span>roleType</span>-->
+<!--    <input type="password" th:field="*{roleType}">-->
+<!--  </div>-->
+  <input type="submit" value="ユーザー追記">
+</form>
+
+</body>
+</html>

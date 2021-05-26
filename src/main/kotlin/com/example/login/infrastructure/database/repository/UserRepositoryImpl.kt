@@ -47,6 +47,7 @@ class UserRepositoryImpl(
                 .map(UserDynamicSqlSupport.User.name).toProperty("name")
                 .map(UserDynamicSqlSupport.User.roleType).toProperty("roleType")
                 .build().render(RenderingStrategy.MYBATIS3)
+            val newrecord = mapper.insert(insertStatement)
         }
 
         private fun toUserstatus(model:User):UserRecord{
