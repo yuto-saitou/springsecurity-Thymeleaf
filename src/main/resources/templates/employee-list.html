@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社員一覧</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kameron&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/venders/bootstrap-reboot.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header id="admin-header" th:insert="common/admin-header :: header-admin">
+    </header>
+    <main>
+        <div class="employee-list-container">
+            <div class="list-container-header">
+                <div class="list-container-header__sort">
+                    <span class="text-employment">全社員：</span>
+                    <span class="all-employment"><!--DBから人数取得、○○人はjsで表示--></span>
+                    <div class="sort-employment">
+                        <label class="form-text-label">ソート : </label>
+                        <select name="" id="">
+                            <option value="1">名前 (昇順)</option>
+                            <option value="2">名前 (降順)</option>
+                            <option value="3">生年月日 (昇順)</option>
+                            <option value="4">生年月日 (降順)</option>
+                            <option value="5">年齢 (昇順)</option>
+                            <option value="6">年齢 (降順)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="list-container-header__button">                       
+                    <form action="" class="list">
+                        <input class="search-text" type="text">
+                        <input class="search-button" type="submit" value="名前検索">
+                    </form>
+                </div>
+            </div>
+            <div class="list-scroll-table">
+                <table id="data">
+                    <thead>
+                        <tr>
+                            <!-- スクロールしても固定でトップ表示 -->
+                            <th class="list-fixed">名前</th>
+                            <th class="list-fixed">ID</th>
+                            <th class="list-fixed">PassWord</th>
+                            <th class="list-fixed">権限レベル</th>
+                            <th class="list-fixed">生年月日</th>
+                            <th class="list-fixed">年齢</th>
+                            <th class="list-fixed">雇用形態</th>
+                            <th class="list-fixed">入社月</th>
+                            <!-- スクロールしても固定でトップ表示 -->
+                        </tr>
+                    </thead>
+                    <tbody class="list-table-row">
+                        <tr id="id01" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠一郎</a></th>
+                            <th class="list-row">00001</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/01/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id02" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠二郎</a></th>
+                            <th>00002</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/02/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id03" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠三郎</a></th>
+                            <th>00003</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/03/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id04" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠四郎</a></th>
+                            <th>00004</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/04/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id05" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠五郎</a></th>
+                            <th>00005</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/05/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id06" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠六郎</a></th>
+                            <th>00006</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/06/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id07" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠七郎</a></th>
+                            <th>00007</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/07/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id08" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠八郎</a></th>
+                            <th>00008</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/08/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id09" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠九郎</a></th>
+                            <th>00009</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/09/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id10" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠十郎</a></th>
+                            <th>00010</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/10/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id10" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠十郎</a></th>
+                            <th>00010</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/10/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id10" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠十郎</a></th>
+                            <th>00010</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/10/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                        <tr id="id10" onclick="rowClick(this.id)">
+                            <th><a href="">勤怠十郎</a></th>
+                            <th>00010</th>
+                            <th>password</th>
+                            <th>3</th>
+                            <th>1995/10/01</th>
+                            <th>25</th>
+                            <th>正社員</th>
+                            <th>2021/04</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="list-container-footer">
+                <form class="sort-form" th:action="@{/test/insert}" method="post" th:object="${userInfo}">
+                    <div class="text-form-group">
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-name">名前</label>
+                            <input th:field="*{userName}" class="form-text-input" type="text" name="" id="sort-name">
+                        </div>
+                        <div class="form-text"><!-- 追記 -->
+                            <label class="form-text-label" for="sort-frigana">ふりがな</label>
+                            <input th:field="*{furiganaName}" class="form-text-input" type="text" name="" id="sort-frigana">
+                            <span class="alertarea"></span>
+                        </div>
+                        <div class="form-text"><!-- 追記 -->
+                            <label class="form-text-label" for="sort-age">年齢</label>
+                            <input th:field="*{age}" class="form-text-input" type="text" name="" id="sort-age">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-id">email</label>
+                            <input th:field="*{email}" class="form-text-input" type="email" name="" id="sort-id">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-password">Password</label>
+                            <input th:field="*{password}" class="form-text-input" type="text" name="" id="sort-password">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-authority">権限レベル</label>
+                            <input th:field="*{roleType}" class="form-text-input" type="text" name="" id="sort-authority">
+                        </div>
+                        <div class="form-text"><!-- 追記 -->
+                            <label class="form-text-label" for="sort-employment">雇用形態</label>
+                            <input th:field="*{employmentStatus}" class="form-text-input" type="text" name="" id="sort-employment">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-birthday">生年月日</label>
+                            <input th:field="*{birthDate}" class="form-text-input" type="text" name="" id="sort-birthday">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-address">住所</label>
+                            <input th:field="*{address}" class="form-text-input" type="text" name="" id="sort-address">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-department">部署</label>
+                            <input th:field="*{department}" class="form-text-input" type="text" name="" id="sort-department">
+                        </div>
+                        <div class="form-text">
+                            <label class="form-text-label" for="sort-monthofjoining">入社月</label>
+                            <input th:field="*{hireDate}" class="form-text-input" type="text" name="" id="sort-monthofjoining">
+                        </div>
+                    </div>
+                     <div class="form-btn">
+                         <input class="form-btn-submit" type="submit" value="追加">
+                     </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script th:src="@{/js/libs/hiddenLogout.js}"></script>
+    <script th:src="@{/js/libs/makeAttendanceRow.js}"></script>
+    <script th:src="@{/js/libs/getMonthAndYear.js}"></script>
+    <script th:src="@{/js/libs/currentTime.js}"></script>
+    <script th:src="@{/js/libs/scrollYears.js}"></script>
+    <script th:src="@{/js/libs/clickMonth.js}"></script>
+    <script th:src="@{/js/libs/toggleClassIOnClick.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/libs/changeColorOnClick.js}"></script>
+    <script th:src="@{/js/libs/showNumberEmployees.js}"></script>
+    <script th:src="@{/js/libs/inputAlert.js}"></script>
+</body>
+</html>
