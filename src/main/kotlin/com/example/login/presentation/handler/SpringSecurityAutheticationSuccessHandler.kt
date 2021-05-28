@@ -24,6 +24,6 @@ class SpringSecurityAutheticationSuccessHandler : AuthenticationSuccessHandler{
         }else if (roles.contains("USER")){
             redirectStrategy.sendRedirect(request,response,"/login/userlist")
         }
-//        redirectStrategy.sendRedirect(request,response,"/login/userlist")
+        redirectStrategy.sendRedirect(request,response,"/login/userlist")
     }
 }

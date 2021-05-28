@@ -25,6 +25,12 @@
                 </tr>
             </tbody>
         </table>
+
+            <select class="form-control"  th:object="${userlist}">
+                <option th:each="user : ${userlist}" th:value="${user.email}" th:text="${user.email}"/>
+            </select>
+
+
         <form th:action="@{/admin/top}" method="get">
             <input type="submit" value="admintop">
         </form>
